@@ -25,7 +25,6 @@ var badFoodElements;
 var badFoodSprite;
 
 let bg;
-var text;
 
 var goodScore=0;
 var badScore=0;
