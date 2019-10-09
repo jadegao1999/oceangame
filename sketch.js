@@ -25,6 +25,7 @@ var badFoodElements;
 var badFoodSprite;
 
 let bg;
+var text;
 
 var goodScore=0;
 var badScore=0;
@@ -63,7 +64,7 @@ function setup() {
   badFoodElements = [straw, plasticBag, sponge, fishNet, cap];
   goodFoodLabels = ['jellyFish', 'fish', 'seaCucumber', 'blueFishy', 'seaweed', 'worm'];
   badFoodLabels = ['straw', 'plasticBag', 'sponge', 'fishNet', 'cap'];
-  
+
 
   stretchy = createSprite(400, 200, 10, 10);
 
@@ -72,7 +73,7 @@ function setup() {
   stretchy.changeImage(egg);
   stretchy.debug = false;
   stretchy.setDefaultCollider();
- 
+
 
   stretchy.maxSpeed = 10;
   console.log(stretchy);
@@ -118,7 +119,7 @@ function draw() {
     stretchy.changeAnimation('normal');
   }
 
- 
+
   drawMoreFood();
   drawSprites();
 
@@ -188,5 +189,5 @@ function insert(collected) {
     textImage.src = "assets/textbox_net.png";
     modal.showModal();
   }
-  
+
 }
