@@ -23,6 +23,7 @@ var goodFoodSprite;
 var badFood;
 var badFoodElements;
 var badFoodSprite;
+var badFoodFlags = [];
 
 let bg;
 
@@ -63,7 +64,8 @@ function setup() {
   badFoodElements = [straw, plasticBag, sponge, fishNet, cap];
   goodFoodLabels = ['jellyFish', 'fish', 'seaCucumber', 'blueFishy', 'seaweed', 'worm'];
   badFoodLabels = ['straw', 'plasticBag', 'sponge', 'fishNet', 'cap'];
-  
+  badFoodFlags = [0, 0, 0, 0, 0];
+
 
   stretchy = createSprite(400, 200, 10, 10);
 
@@ -72,7 +74,7 @@ function setup() {
   stretchy.changeImage(egg);
   stretchy.debug = false;
   stretchy.setDefaultCollider();
- 
+
 
   stretchy.maxSpeed = 10;
   console.log(stretchy);
@@ -118,11 +120,10 @@ function draw() {
     stretchy.changeAnimation('normal');
   }
 
- 
+
   drawMoreFood();
   drawSprites();
 
-  console.log(goodScore);
 }
 
 
@@ -173,20 +174,22 @@ function popupWindow() {
   var modal = document.getElementById('textbox');
 
   modal.addEventListener('click', (event) => {
-  // if (event.target === modal) {
-    modal.close('cancelled');
-  // }
+    if (event.target === modal) {
+      modal.close();
+      // TODO: pause the game when window pops up.
+    }
   });
-
 }
 
 function insert(collected) {
   var textImage = document.getElementById("textboxImage");
   var modal = document.getElementById('textbox');
 
-  if (badFoodLabels.indexOf(collected.getAnimationLabel()) == 3){
+  if (badFoodLabels.indexOf(collected.getAnimationLabel()) === 3
+      && badFoodFlags[3] === 0 && modal.open === false) {
+    badFoodFlags[3] = 1; // Set flag to 1 for only showing popup once
     textImage.src = "assets/textbox_net.png";
     modal.showModal();
   }
-  
+  // TODO: Add all image cases
 }
