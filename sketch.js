@@ -218,42 +218,42 @@ function insert(collected) {
 }
 
 
-  if (goodFoodLabels.indexOf(collected.getAnimationLabel()) === 1
+  else if (goodFoodLabels.indexOf(collected.getAnimationLabel()) === 1
       && goodFoodFlags[1] === 0 && modal.open === false) {
     goodFoodFlags[1] = 1;
     textImage.src = "assets/fishText.png";
     modal.showModal();
   }
 
-  if (goodFoodLabels.indexOf(collected.getAnimationLabel()) === 2
+  else if (goodFoodLabels.indexOf(collected.getAnimationLabel()) === 2
       && goodFoodFlags[2] === 0 && modal.open === false) {
     goodFoodFlags[2] = 1;
     textImage.src = "assets/cucumberText.png";
     modal.showModal();
   }
 
-  if (goodFoodLabels.indexOf(collected.getAnimationLabel()) === 3
+  else if (goodFoodLabels.indexOf(collected.getAnimationLabel()) === 3
       && goodFoodFlags[3] === 0 && modal.open === false) {
     goodFoodFlags[3] = 1;
     textImage.src = "assets/fishText.png";
     modal.showModal();
   }
 
-  if (goodFoodLabels.indexOf(collected.getAnimationLabel()) === 4
+  else if (goodFoodLabels.indexOf(collected.getAnimationLabel()) === 4
       && goodFoodFlags[4] === 0 && modal.open === false) {
     goodFoodFlags[4] = 1;
     textImage.src = "assets/SeaweedText.png";
     modal.showModal();
   }
 
-  if (goodFoodLabels.indexOf(collected.getAnimationLabel()) === 5
+  else if (goodFoodLabels.indexOf(collected.getAnimationLabel()) === 5
       &&goodFoodFlags[5] === 0 && modal.open === false) {
     goodFoodFlags[5] = 1;
     textImage.src = "assets/wormsText.png";
     modal.showModal();
   }
 
-  if (goodFoodLabels.indexOf(collected.getAnimationLabel()) === 6
+  else if (goodFoodLabels.indexOf(collected.getAnimationLabel()) === 6
       && goodFoodFlags[6] === 0 && modal.open === false) {
     goodFoodFlags[6] = 1;
     textImage.src = "assets/fishText.png";
@@ -262,42 +262,42 @@ function insert(collected) {
 
   // bad food starts Here
 
-  if (badFoodLabels.indexOf(collected.getAnimationLabel()) === 0
+  else if (badFoodLabels.indexOf(collected.getAnimationLabel()) === 0
       && badFoodFlags[0] === 0 && modal.open === false) {
     badFoodFlags[0] = 1;
     textImage.src = "assets/StrawText.png";
     modal.showModal();
   }
 
-  if (badFoodLabels.indexOf(collected.getAnimationLabel()) === 1
+  else if (badFoodLabels.indexOf(collected.getAnimationLabel()) === 1
       && badFoodFlags[1] === 0 && modal.open === false) {
     badFoodFlags[1] = 1;
     textImage.src = "assets/PlasticBagText.png";
     modal.showModal();
   }
 
-  if (badFoodLabels.indexOf(collected.getAnimationLabel()) === 2
+  else if (badFoodLabels.indexOf(collected.getAnimationLabel()) === 2
       && badFoodFlags[2] === 0 && modal.open === false) {
     badFoodFlags[2] = 1;
     textImage.src = "assets/SpongeText.png";
     modal.showModal();
   }
 
-  if (badFoodLabels.indexOf(collected.getAnimationLabel()) === 3
+  else if (badFoodLabels.indexOf(collected.getAnimationLabel()) === 3
       && badFoodFlags[3] === 0 && modal.open === false) {
     badFoodFlags[3] = 1;
     textImage.src = "assets/textbox_net.png";
     modal.showModal();
   }
 
-  if (badFoodLabels.indexOf(collected.getAnimationLabel()) === 4
+  else if (badFoodLabels.indexOf(collected.getAnimationLabel()) === 4
       && badFoodFlags[4] === 0 && modal.open === false) {
     badFoodFlags[4] = 1;
     textImage.src = "assets/CapText.png";
     modal.showModal();
   }
 
-  if (badFoodLabels.indexOf(collected.getAnimationLabel()) === 5
+  else if (badFoodLabels.indexOf(collected.getAnimationLabel()) === 5
       && badFoodFlags[5] === 0 && modal.open === false) {
     badFoodFlags[5] = 1;
     textImage.src = "assets/BlobText.png";
