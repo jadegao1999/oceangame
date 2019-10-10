@@ -31,8 +31,8 @@ var badFoodFlags = [];
 
 let bg;
 
-var goodScore=0;
-var badScore=0;
+var goodScore;
+var badScore;
 
 var turtleAnimation;
 
@@ -62,7 +62,6 @@ function setup() {
   fullscreen();
   createCanvas(windowWidth, windowHeight);
 
-  noLoop();
   document.getElementById('textbox').showModal();
 
   var audio = new Audio('assets/ocean.mp3');
@@ -72,22 +71,33 @@ function setup() {
   badFoodElements = [straw, plasticBag, sponge, fishNet, cap, blob];
   goodFoodLabels = ['jellyFish', 'fish', 'seaCucumber', 'blueFishy', 'seaweed', 'worm', 'purpleFishy'];
   badFoodLabels = ['straw', 'plasticBag', 'sponge', 'fishNet', 'cap', 'blob'];
+
+  reset();
+}
+
+// Reset all the variables and drawings to default values.
+function reset() {
+  if (stretchy) {
+    stretchy.remove();
+  }
+  if (goodFood) {
+    goodFood.removeSprites();
+  }
+  if (badFood) {
+    badFood.removeSprites();
+  }
   goodFoodFlags = [0, 0, 0, 0, 0, 0, 0]
   badFoodFlags = [0, 0, 0, 0, 0, 0];
-
+  goodScore = 0;
+  badScore = 0;
 
   stretchy = createSprite(400, 200, 10, 10);
-
   stretchy.addImage('egg', egg);
   stretchy.addAnimation('normal', 'assets/babyTurtle.png', 'assets/babyTurtle.png', 'assets/BabyTurtle_2.png', 'assets/BabyTurtle_2.png');
   stretchy.changeImage(egg);
   stretchy.debug = false;
   stretchy.setDefaultCollider();
-
-
   stretchy.maxSpeed = 10;
-  console.log(stretchy);
-
 
   goodFood = new Group();
   for(var i=0; i<10; i++)
@@ -110,8 +120,17 @@ function setup() {
     badFoodSprite.setDefaultCollider();
     badFood.add(badFoodSprite);
   }
-}
 
+  var textImage = document.getElementById("textboxImage");
+  var modal = document.getElementById('textbox');
+  textImage.src = "assets/startingPage.png";
+  // Remove the event listener from previous game.
+  modal.removeEventListener('click', onClickResetGame);
+  modal.addEventListener('click', onClickCloseDialog);
+  noLoop();
+  // Call draw() to initalize all the sprites in new game.
+  draw();
+}
 
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min) + min);
@@ -128,15 +147,10 @@ function draw() {
   stretchy.overlap(goodFood, collect);
   stretchy.overlap(badFood, collect);
 
-  if (goodScore >= 4) {
-    stretchy.changeAnimation('normal');
-  }
-
-
   drawMoreFood();
   drawSprites();
 
-  //healthScore();
+  checkGameStatus();
 
 }
 
@@ -147,7 +161,6 @@ function collect(stretchy, collected) {
   console.log("Good Score:" + goodScore);
   console.log("Bad Score:" + badScore);
   collected.remove();
-  console.log(collected);
   insert(collected);
 }
 
@@ -160,8 +173,6 @@ function scoreBoard(collected) {
     badScore++;
   }
 }
-
-
 
 function drawMoreFood() {
   if (goodFood.size() <= 5) {
@@ -181,42 +192,6 @@ function drawMoreFood() {
       badFoodSprite.setDefaultCollider();
       badFood.add(badFoodSprite);
   }
-}
-
-// function healthScore() {
-//   if (badScore >= 3) {
-//     background(endPage);
-//       if (event.keyCode == 32) {
-//         badScore = 0;
-//         goodScore = 0;
-//         background(bg);
-//         stretchy.changeImage(egg);
-//       }
-//    }
-//   }
-//
-//
-//   function openingPage() {
-//     if (badScore < 0 && goodScore < 0) {
-//       background(startingPage);
-//         if (event.keyCode == 32) {
-//           badScore = 0;
-//           goodScore = 0;
-//           background(bg);
-//           draw();
-//         }
-//      }
-//     }
-
-
-function popupWindow() {
-  var modal = document.getElementById('textbox');
-
-  modal.addEventListener('click', (event) => {
-    if (event.target == modal){
-      modal.close();
-      loop();
-  });
 }
 
 // goodfood starts here
@@ -331,6 +306,31 @@ function insert(collected) {
     modal.showModal();
     noLoop();
   }
+}
 
+// Check the status of game, see if game ends.
+function checkGameStatus() {
+  var textImage = document.getElementById("textboxImage");
+  var modal = document.getElementById('textbox');
 
+  // Change ball to turtle.
+  if (goodScore >= 4) {
+    stretchy.changeAnimation('normal');
+  }
+
+  // Game over.
+  if (badScore >= 3 && modal.open === false) {
+    noLoop();
+    textImage.src = "assets/endpage.png";
+    modal.addEventListener('click', onClickResetGame);
+    modal.showModal();
+  }
+}
+
+var onClickCloseDialog = (event) => {
+  document.getElementById('textbox').close();
+  loop();
+}
+var onClickResetGame = (event) => {
+  reset();
 }
