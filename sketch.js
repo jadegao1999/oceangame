@@ -62,6 +62,9 @@ function setup() {
   fullscreen();
   createCanvas(windowWidth, windowHeight);
 
+  noLoop();
+  document.getElementById('textbox').showModal();
+
   var audio = new Audio('assets/ocean.mp3');
   audio.play();
 
@@ -116,7 +119,7 @@ function getRandomInt(min, max) {
 
 function draw() {
   background(bg);
-  document.addEventListener('keydown', healthScore);
+  //document.addEventListener('keydown', healthScore);
 
 
   stretchy.velocity.x = (mouseX-stretchy.position.x)/10;
@@ -133,7 +136,7 @@ function draw() {
   drawMoreFood();
   drawSprites();
 
-  healthScore();
+  //healthScore();
 
 }
 
@@ -180,43 +183,40 @@ function drawMoreFood() {
   }
 }
 
-function healthScore() {
-  if (badScore >= 3) {
-    background(endPage);
-      if (event.keyCode == 32) {
-        badScore = 0;
-        goodScore = 0;
-        background(bg);
-        stretchy.changeImage(egg);
-      }
-   }
-  }
-
-
-  function openingPage() {
-      if (badScore < 0 && goodScore < 0) {
-        background(startingPage);
-          if (event.keyCode == 32) {
-            badScore = 0;
-            goodScore = 0;
-            background(bg);
-            draw();
-          }
-       }
-      }
+// function healthScore() {
+//   if (badScore >= 3) {
+//     background(endPage);
+//       if (event.keyCode == 32) {
+//         badScore = 0;
+//         goodScore = 0;
+//         background(bg);
+//         stretchy.changeImage(egg);
+//       }
+//    }
+//   }
+//
+//
+//   function openingPage() {
+//     if (badScore < 0 && goodScore < 0) {
+//       background(startingPage);
+//         if (event.keyCode == 32) {
+//           badScore = 0;
+//           goodScore = 0;
+//           background(bg);
+//           draw();
+//         }
+//      }
+//     }
 
 
 function popupWindow() {
   var modal = document.getElementById('textbox');
 
   modal.addEventListener('click', (event) => {
-    if (event.target === modal) {
+    if (event.target == modal){
       modal.close();
       loop();
-      // TODO: pause the game when window pops up.
-    }
   });
-
 }
 
 // goodfood starts here
