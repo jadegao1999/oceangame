@@ -39,7 +39,7 @@ var turtleAnimation;
 function preload() {
   oceanSound = loadSound('assets/ocean.mp3');
   bg = loadImage('assets/underwater-2615376.jpg');
-  egg = loadImage('assets/egg.png');
+  egg = loadImage('assets/face.png');
   jellyFish = loadImage('assets/Jelly Fish.png');
   plasticBag = loadImage('assets/Plastic Bag.png');
   straw = loadImage('assets/Straw.png');
@@ -193,15 +193,30 @@ function healthScore() {
   }
 
 
+  function openingPage() {
+      if (badScore < 0 && goodScore < 0) {
+        background(startingPage);
+          if (event.keyCode == 32) {
+            badScore = 0;
+            goodScore = 0;
+            background(bg);
+            draw();
+          }
+       }
+      }
+
+
 function popupWindow() {
   var modal = document.getElementById('textbox');
 
   modal.addEventListener('click', (event) => {
     if (event.target === modal) {
       modal.close();
+      loop();
       // TODO: pause the game when window pops up.
     }
   });
+
 }
 
 // goodfood starts here
@@ -215,6 +230,7 @@ function insert(collected) {
     goodFoodFlags[0] = 1;
     textImage.src = "assets/jellyfishText.png";
     modal.showModal();
+    noLoop();
 }
 
 
@@ -223,6 +239,7 @@ function insert(collected) {
     goodFoodFlags[1] = 1;
     textImage.src = "assets/fishText.png";
     modal.showModal();
+    noLoop();
   }
 
   else if (goodFoodLabels.indexOf(collected.getAnimationLabel()) === 2
@@ -230,6 +247,7 @@ function insert(collected) {
     goodFoodFlags[2] = 1;
     textImage.src = "assets/cucumberText.png";
     modal.showModal();
+    noLoop();
   }
 
   else if (goodFoodLabels.indexOf(collected.getAnimationLabel()) === 3
@@ -237,6 +255,7 @@ function insert(collected) {
     goodFoodFlags[3] = 1;
     textImage.src = "assets/fishText.png";
     modal.showModal();
+    noLoop();
   }
 
   else if (goodFoodLabels.indexOf(collected.getAnimationLabel()) === 4
@@ -244,6 +263,7 @@ function insert(collected) {
     goodFoodFlags[4] = 1;
     textImage.src = "assets/SeaweedText.png";
     modal.showModal();
+    noLoop();
   }
 
   else if (goodFoodLabels.indexOf(collected.getAnimationLabel()) === 5
@@ -251,6 +271,7 @@ function insert(collected) {
     goodFoodFlags[5] = 1;
     textImage.src = "assets/wormsText.png";
     modal.showModal();
+    noLoop();
   }
 
   else if (goodFoodLabels.indexOf(collected.getAnimationLabel()) === 6
@@ -258,6 +279,7 @@ function insert(collected) {
     goodFoodFlags[6] = 1;
     textImage.src = "assets/fishText.png";
     modal.showModal();
+    noLoop();
   }
 
   // bad food starts Here
@@ -267,6 +289,7 @@ function insert(collected) {
     badFoodFlags[0] = 1;
     textImage.src = "assets/StrawText.png";
     modal.showModal();
+    noLoop();
   }
 
   else if (badFoodLabels.indexOf(collected.getAnimationLabel()) === 1
@@ -274,6 +297,7 @@ function insert(collected) {
     badFoodFlags[1] = 1;
     textImage.src = "assets/PlasticBagText.png";
     modal.showModal();
+    noLoop();
   }
 
   else if (badFoodLabels.indexOf(collected.getAnimationLabel()) === 2
@@ -281,6 +305,7 @@ function insert(collected) {
     badFoodFlags[2] = 1;
     textImage.src = "assets/SpongeText.png";
     modal.showModal();
+    noLoop();
   }
 
   else if (badFoodLabels.indexOf(collected.getAnimationLabel()) === 3
@@ -288,6 +313,7 @@ function insert(collected) {
     badFoodFlags[3] = 1;
     textImage.src = "assets/textbox_net.png";
     modal.showModal();
+    noLoop();
   }
 
   else if (badFoodLabels.indexOf(collected.getAnimationLabel()) === 4
@@ -295,6 +321,7 @@ function insert(collected) {
     badFoodFlags[4] = 1;
     textImage.src = "assets/CapText.png";
     modal.showModal();
+    noLoop();
   }
 
   else if (badFoodLabels.indexOf(collected.getAnimationLabel()) === 5
@@ -302,6 +329,7 @@ function insert(collected) {
     badFoodFlags[5] = 1;
     textImage.src = "assets/BlobText.png";
     modal.showModal();
+    noLoop();
   }
 
 
