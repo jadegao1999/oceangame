@@ -56,6 +56,7 @@ function preload() {
   purpleFishy = loadImage('assets/purpleFishy.png');
   blob = loadImage('assets/blob.png');
   eatSound = loadSound('assets/chew.wav');
+  backgroundmusic = loadSound('assets/ocean.mp3');
 
 }
 
@@ -64,9 +65,7 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
 
   document.getElementById('textbox').showModal();
-
-  var audio = new Audio('assets/ocean.mp3');
-  audio.play();
+  backgroundmusic.loop();
 
   goodFoodElements = [jellyFish, fish, seaCucumber, blueFishy, seaweed, worm, purpleFishy];
   badFoodElements = [straw, plasticBag, sponge, fishNet, cap, blob];
@@ -163,8 +162,7 @@ function collect(stretchy, collected) {
   console.log("Bad Score:" + badScore);
   collected.remove();
   insert(collected);
-  var audio = new Audio('assets/chew.wav');
-  audio.play();
+  eatSound.play();
 
 }
 
