@@ -111,7 +111,7 @@ function reset() {
   }
 
   badFood = new Group();
-  for(var i=0; i<13; i++)
+  for(var i=0; i<18; i++)
   {
     var randomNum = getRandomInt(0,6);
     var badFoodSprite = createSprite(random(0, width), random(0, height));
@@ -175,7 +175,7 @@ function scoreBoard(collected) {
 }
 
 function drawMoreFood() {
-  if (goodFood.size() <= 5) {
+  if (goodFood.size() <= 2) {
       var randomNum = getRandomInt(0,7);
       var goodFoodSprite = createSprite(random(0, width), random(0, height));
       goodFoodSprite.addImage(goodFoodLabels[randomNum], goodFoodElements[randomNum]);
@@ -184,7 +184,7 @@ function drawMoreFood() {
       goodFood.add(goodFoodSprite);
   }
 
-  if (badFood.size() <= 8) {
+  if (badFood.size() <= 13) {
       var randomNum = getRandomInt(0,6);
       var badFoodSprite = createSprite(random(0, width), random(0, height));
       badFoodSprite.addImage(badFoodLabels[randomNum], badFoodElements[randomNum]);
@@ -314,12 +314,12 @@ function checkGameStatus() {
   var modal = document.getElementById('textbox');
 
   // Change ball to turtle.
-  if (goodScore >= 4) {
+  if (goodScore >= 5) {
     stretchy.changeAnimation('normal');
   }
 
   // Game over.
-  if (badScore >= 3 && modal.open === false) {
+  if (badScore >= 15 && modal.open === false) {
     noLoop();
     textImage.src = "assets/endpage.png";
     modal.addEventListener('click', onClickResetGame);
