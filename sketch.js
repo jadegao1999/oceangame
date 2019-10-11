@@ -55,6 +55,7 @@ function preload() {
   cap = loadImage('assets/cap.png');
   purpleFishy = loadImage('assets/purpleFishy.png');
   blob = loadImage('assets/blob.png');
+  eatSound = loadSound('assets/chew.wav');
 
 }
 
@@ -162,6 +163,9 @@ function collect(stretchy, collected) {
   console.log("Bad Score:" + badScore);
   collected.remove();
   insert(collected);
+  var audio = new Audio('assets/chew.wav');
+  audio.play();
+
 }
 
 
